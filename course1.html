@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course 1: Introduction to HTML</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* General website decoration */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #f0f4f7, #d9e2ec);
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        header, footer {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 15px;
+            text-align: center;
+        }
+        header h1 {
+            font-size: 28px;
+            margin: 0;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 15px;
+        }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        /* Progress bar styles */
+        #progress-container {
+            background-color: #f0f0f0;
+            border-radius: 5px;
+            height: 20px;
+            width: 100%;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        #progress-bar {
+            background-color: #4caf50;
+            height: 100%;
+            width: 0%;
+        }
+        #progress-percentage {
+            font-size: 16px;
+            text-align: right;
+            margin-top: 5px;
+        }
+
+        /* Stylish HTML Description */
+        .html-description {
+            background-color: #f9f9f9;
+            border-left: 5px solid #4caf50;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        .html-description h2 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        .html-description p {
+            color: #666;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        /* Chapter summary styling */
+        .chapter-summaries {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .chapter-card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 30%;
+            transition: transform 0.3s ease;
+            text-align: left;
+            cursor: pointer;
+            position: relative;
+        }
+        .chapter-card.locked {
+            pointer-events: none;
+            opacity: 0.6;
+        }
+        .chapter-card.locked:before {
+            content: "\f023"; /* Font Awesome padlock icon */
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: #f44336;
+            font-size: 24px;
+        }
+        .chapter-card h3 {
+            margin-bottom: 10px;
+            font-size: 20px;
+            color: #333;
+        }
+        .chapter-card p {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Practice set heading styling */
+        #practice-sets-heading {
+            font-size: 28px;
+            text-align: center;
+            color: #ff5722;
+            text-shadow: 2px 2px #ffccbc;
+            margin: 40px 0 20px;
+        }
+
+        /* Practice set styling */
+        .practice-sets {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .practice-card {
+            background-color: #fff5f5;
+            border-left: 5px solid #ff5722;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 30%;
+            transition: transform 0.3s ease;
+            text-align: left;
+            cursor: pointer;
+            position: relative;
+        }
+        .practice-card.locked {
+            pointer-events: none;
+            opacity: 0.6;
+        }
+        .practice-card.locked:before {
+            content: "\f023"; /* Font Awesome padlock icon */
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: #f44336;
+            font-size: 24px;
+        }
+        .practice-card h3 {
+            margin-bottom: 10px;
+            font-size: 20px;
+            color: #ff5722;
+        }
+        .practice-card p {
+            font-size: 14px;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Additional Decoration */
+        footer {
+            margin-top: 40px;
+            padding: 10px;
+            background-color: #333;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Course 1: Introduction to HTML</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#chapters">Chapters</a></li>
+                <li><a href="#practice-sets">Practice Sets</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Progress bar section -->
+    <section id="progress">
+        <h2>Course Progress</h2>
+        <div id="progress-container">
+            <div id="progress-bar"></div>
+        </div>
+        <div id="progress-percentage">Progress: 0%</div>
+    </section>
+
+    <!-- HTML Description Section -->
+    <section class="html-description">
+        <h2>What is HTML?</h2>
+        <p>HTML (HyperText Markup Language) is the standard language used to create web pages. It describes the structure of a webpage using a series of elements, which act as building blocks. These elements are represented by tags, and they define the content, such as text, images, and links, as well as the layout of the webpage. Understanding HTML is essential for building websites and web applications, and it forms the foundation for more advanced web technologies like CSS and JavaScript.</p>
+    </section>
+
+    <!-- Chapter Summaries Section -->
+    <section id="chapter-summaries" class="chapter-summaries">
+        <div class="chapter-card unlocked" data-url="https://www.youtube.com/embed/MDLn5-zSQQI?si=NPQnuBKtcm-OTssA">
+            <h3>Chapter 1: Basics of HTML</h3>
+            <p>This chapter covers the fundamental concepts of HTML, including what HTML is and how it's used to create web pages. You’ll learn about the structure of an HTML document and basic elements like headings, paragraphs, and links.</p>
+        </div>
+        <div class="chapter-card locked" data-url="https://www.youtube.com/embed/X9D9ur7t7vc?si=r_j_eS2WnW2yzhzP">
+            <h3>Chapter 2: HTML Tags and Attributes</h3>
+            <p>In this chapter, you’ll explore various HTML tags and their attributes. From organizing content with lists to working with images and hyperlinks, this chapter dives into how HTML tags shape a webpage’s structure.</p>
+        </div>
+        <div class="chapter-card locked" data-url="https://www.youtube.com/embed/db4CoweZIJE?si=HDwM7PZyWz9Fy6nA">
+            <h3>Chapter 3: Structuring a Web Page</h3>
+            <p>This chapter focuses on how to properly structure a web page using semantic HTML elements. You'll learn about the importance of elements like `<header>`, `<footer>`, and `<section>`, which improve accessibility and SEO.</p>
+        </div>
+    </section>
+
+    <!-- Practice Sets Section with Stylish Heading -->
+    <section id="practice-sets">
+        <h2 id="practice-sets-heading">Practice Sets</h2>
+        <div class="practice-sets">
+            <div class="practice-card unlocked" data-url="https://docs.google.com/forms/d/e/1FAIpQLSfyN8cbNegCAryKD9VYz7Q49ppfTaX4CgROIu0dVLdq1YMaAg/viewform?usp=sharing">
+                <h3>Quiz 1: HTML Basics</h3>
+                <p>This quiz covers the basics of HTML as discussed in Chapter 1. Test your knowledge on fundamental concepts and tags.</p>
+            </div>
+            <div class="practice-card locked" data-url="https://forms.gle/nNUK1zu8C6EmirYH6">
+                <h3>Quiz 2: HTML Tags</h3>
+                <p>Evaluate your understanding of various HTML tags and attributes covered in Chapter 2.</p>
+            </div>
+            <div class="practice-card locked" data-url="https://forms.gle/HsH4uTAeajcnbMCN6">
+                <h3>Quiz 3: Web Page Structure</h3>
+                <p>Test your knowledge on structuring a web page, as covered in Chapter 3.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Educational Website. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            let progress = 0;
+            const totalChapters = 3;
+            const totalQuizzes = 3;
+            const progressIncrement = 100 / (totalChapters + totalQuizzes);
+            
+            // Elements
+            const progressBar = document.getElementById('progress-bar');
+            const progressPercentage = document.getElementById('progress-percentage');
+            const chapterCards = document.querySelectorAll('.chapter-card');
+            const practiceCards = document.querySelectorAll('.practice-card');
+            
+            // Initialize unlocked state
+            let unlockedChapters = 1;
+            let unlockedQuizzes = 1;
+
+            function updateProgress() {
+                progressBar.style.width = `${progress}%`;
+                progressPercentage.textContent = `Progress: ${Math.round(progress)}%`;
+            }
+
+            function unlockNextChapter(index) {
+                if (index < chapterCards.length - 1) {
+                    chapterCards[index + 1].classList.remove('locked');
+                }
+            }
+
+            function unlockNextQuiz(index) {
+                if (index < practiceCards.length - 1) {
+                    practiceCards[index + 1].classList.remove('locked');
+                }
+            }
+
+            // Chapter click handler
+            chapterCards.forEach((card, index) => {
+                if (index < unlockedChapters) {
+                    card.classList.remove('locked');
+                }
+                card.addEventListener('click', () => {
+                    if (!card.classList.contains('locked')) {
+                        // Open video
+                        window.open(card.getAttribute('data-url'), '_blank');
+                        // Update progress
+                        progress += progressIncrement;
+                        updateProgress();
+                        // Unlock next chapter
+                        unlockNextChapter(index);
+                        // Track unlocked chapters
+                        if (index + 1 >= unlockedChapters) {
+                            unlockedChapters = index + 2;
+                        }
+                    }
+                });
+            });
+
+            // Quiz click handler
+            practiceCards.forEach((card, index) => {
+                if (index < unlockedQuizzes) {
+                    card.classList.remove('locked');
+                }
+                card.addEventListener('click', () => {
+                    if (!card.classList.contains('locked')) {
+                        // Open quiz
+                        window.open(card.getAttribute('data-url'), '_blank');
+                        // Update progress
+                        progress += progressIncrement;
+                        updateProgress();
+                        // Unlock next quiz
+                        unlockNextQuiz(index);
+                        // Track unlocked quizzes
+                        if (index + 1 >= unlockedQuizzes) {
+                            unlockedQuizzes = index + 2;
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
