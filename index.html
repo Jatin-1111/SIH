@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The UnCoders</title>
+    <title>Educational Website</title>
     <style>
         /* Existing styles here */
 body, h1, h2, h3, p, ul, li, form, input, textarea, button {
@@ -31,6 +31,22 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 20px;
+}
+
+.small-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.logo{
+    margin-left:10px;
+    margin-right: 20px;
+    height: 90px;
+    width: 90px;
+    border-radius: 20%;
 }
 
 ul{
@@ -249,7 +265,10 @@ footer {
 </div> -->
 
     <div class="container">
-        <h1>The UnCoders</h1>
+        <div class="small-container">
+            <img class="logo" src="logo.jpg"/>
+        <h1> The Uncoders</h1>
+    </div>
         <ul>
             <li><a href="#home">Home</a></li>
             <li><a href="#about">About</a></li>
