@@ -3,12 +3,241 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Course 2: Basics of CSS</title>
+    <title>Course 2: Basics Of CSS</title>
     <link rel="stylesheet" href="styles.css">
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* General website decoration */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #f0f4f7, #d9e2ec);
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        header, footer {
+            background-color: #030881;
+            color: #fff;
+            padding: 15px;
+            text-align: center;
+        }
+        header h1 {
+            font-size: 28px;
+            margin: 0;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 15px;
+        }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        /* Progress bar styles */
+        #progress-container {
+            background-color: #ffffff;
+            border-radius: 5px;
+            height: 20px;
+            width: 100%;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        #progress-bar {
+            background-color: #030881;
+            height: 100%;
+            width: 0%;
+        }
+        #progress-percentage {
+            font-size: 16px;
+            text-align: right;
+            margin-top: 5px;
+        }
+
+        /* Stylish HTML Description */
+        .html-description {
+            background-color: #f9f9f9;
+            border-left: 5px solid #030881;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        .html-description h2 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        .html-description p {
+            color: #666;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        /* Chapter summary styling */
+        .chapter-summaries {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .chapter-card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 30%;
+            transition: transform 0.3s ease;
+            text-align: left;
+            cursor: pointer;
+            position: relative;
+        }
+        .chapter-card.locked {
+            pointer-events: none;
+            opacity: 0.6;
+        }
+        .chapter-card.locked:before {
+            content: "\f023"; /* Font Awesome padlock icon */
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: #030881;
+            font-size: 24px;
+        }
+        .chapter-card h3 {
+            margin-bottom: 10px;
+            font-size: 20px;
+            color: #333;
+        }
+        .chapter-card p {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Practice set heading styling */
+        #practice-sets-heading {
+            font-size: 28px;
+            text-align: center;
+            color: #030881;
+            text-shadow: 2px 2px #ffccbc;
+            margin: 40px 0 20px;
+        }
+
+        /* Practice set styling */
+        .practice-sets {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .practice-card {
+            background-color: #fff5f5;
+            border-left: 5px solid #030881;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 30%;
+            transition: transform 0.3s ease;
+            text-align: left;
+            cursor: pointer;
+            position: relative;
+        }
+        .practice-card.locked {
+            pointer-events: none;
+            opacity: 0.6;
+        }
+        .practice-card.locked:before {
+            content: "\f023"; /* Font Awesome padlock icon */
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: #030881;
+            font-size: 24px;
+        }
+        .practice-card h3 {
+            margin-bottom: 10px;
+            font-size: 20px;
+            color: #030881;
+        }
+        .practice-card p {
+            font-size: 14px;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Additional Decoration */
+        footer {
+            margin-top: 40px;
+            padding: 10px;
+            background-color: #333;
+            color: #fff;
+        }
+    </style>
 </head>
 <body>
     <header>
-        <h1>Course 2: Basics of CSS</h1>
+        <div class="container">
+            <div class="left">
+                <h1>Course 2: Basics Of CSS</h1>
+            </div>
+            <div class="right">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#chapters">Chapters</a></li>
+                    <li><a href="#practice-sets">Practice Sets</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    
+    <style>
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #030881; /* Dark background color */
+            color: #fff; /* White text color */
+        }
+        
+        .left h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        
+        .right ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .right ul li {
+            margin-left: 20px;
+        }
+        
+        .right ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        
+        .right ul li a:hover {
+            color: #007BFF; /* Hover effect color */
+        }
+    </style>
+    
+    <!-- 
+    <header>
+        <h1>Course 1: Introduction to HTML</h1>
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
@@ -17,26 +246,139 @@
             </ul>
         </nav>
     </header>
-
-    <section id="chapters">
-        <h2>Chapters</h2>
-        <ul>
-            <li>Chapter 1: Introduction to CSS</li>
-            <li>Chapter 2: CSS Selectors and Properties</li>
-            <li>Chapter 3: Layout and Design</li>
-        </ul>
+ -->
+    <!-- Progress bar section -->
+    <section id="progress">
+        <h2>Course Progress</h2>
+        <div id="progress-container">
+            <div id="progress-bar"></div>
+        </div>
+        <div id="progress-percentage">Progress: 0%</div>
     </section>
 
+    <!-- HTML Description Section -->
+    <section class="html-description">
+        <h2>What is CSS?</h2>
+        <p>CSS, or Cascading Style Sheets, is a language used to describe the look and formatting of a document written in HTML or XML. It controls the visual presentation of web pages, including layout, colors, fonts, and spacing. By separating content (HTML) from design (CSS), CSS allows web developers to create consistent and visually appealing websites with less code. It also makes it easier to maintain and update web designs, as changes in the CSS file can be applied across multiple pages without altering the HTML structure.</p>
+    </section>
+
+    <!-- Chapter Summaries Section -->
+    <section id="chapter-summaries" class="chapter-summaries">
+        <div class="chapter-card unlocked" data-url="https://www.youtube.com/watch?v=L1yy8QI0Aew&pp=ygUTaW50cm9kdWN0aW9uIHRvIGNzcw%3D%3D">
+            <h3>Chapter 1: Introduction to CSS</h3>
+            <p>This chapter provides a foundational understanding of Cascading Style Sheets (CSS), an essential tool for web design and development. CSS is a stylesheet language that defines how HTML elements are displayed on a web page, enabling the separation of content and presentation. By mastering CSS, developers can create visually appealing, responsive, and consistent web designs. This chapter covers the basics of CSS, including its syntax, structure, and role in web development, setting the stage for more advanced topics in subsequent chapters.</p>
+        </div>
+        <div class="chapter-card locked" data-url="https://www.youtube.com/watch?v=oPPym7UaSIo&pp=ygUcY3NzIHNlbGVjdG9ycyBhbmQgcHJvcGVydGllcw%3D%3D">
+            <h3>Chapter 2: CSS Selectors and Properties</h3>
+            <p>In this chapter, we delve into the core components of CSS: selectors and properties. CSS selectors are patterns used to target and style specific HTML elements, while properties define the visual aspects of these elements, such as color, font, and layout. Understanding the different types of selectors—such as element, class, and ID selectors—along with the wide range of CSS properties, is crucial for effective web design. This chapter provides a comprehensive overview of how selectors and properties work together to control the appearance of web pages, laying the groundwork for creating dynamic and visually consistent designs.</p>
+        </div>
+        <div class="chapter-card locked" data-url="https://www.youtube.com/watch?v=i1FeOOhNnwU&pp=ygUVY3NzIGxheW91dCBhbmQgZGVzaWdu">
+            <h3>Chapter 3: Layout and Design</h3>
+            <p>This chapter explores the principles of layout and design in CSS, focusing on how to structure and arrange content on a web page for optimal user experience. It covers key layout techniques such as the box model, flexbox, and grid, which are essential for creating responsive and adaptable web designs. Additionally, the chapter addresses design elements like spacing, alignment, and visual hierarchy, providing the tools needed to create aesthetically pleasing and functional web interfaces. By the end of this chapter, you will have a solid understanding of how to use CSS to craft well-organized and visually appealing layouts that enhance user engagement.</p>
+        </div>
+    </section>
+
+    <!-- Practice Sets Section with Stylish Heading -->
     <section id="practice-sets">
-        <h2>Practice Sets</h2>
-        <ul>
-            <li><a href="practice-sets/course2-selectors.html">Quiz on CSS Selectors</a></li>
-            <li><a href="practice-sets/course2-layout.html">Test on CSS Layouts</a></li>
-        </ul>
+        <h2 id="practice-sets-heading">Practice Sets</h2>
+        <div class="practice-sets">
+            <div class="practice-card unlocked" data-url="https://docs.google.com/forms/d/e/1FAIpQLSfyN8cbNegCAryKD9VYz7Q49ppfTaX4CgROIu0dVLdq1YMaAg/viewform?usp=sharing">
+                <h3>Quiz 1: CSS Basics</h3>
+                <p>This quiz covers the basics of CSS as discussed in Chapter 1. Test your knowledge on fundamental concepts and tags.</p>
+            </div>
+            <div class="practice-card locked" data-url="https://forms.gle/nNUK1zu8C6EmirYH6">
+                <h3>Quiz 2: CSS Selectors and Properties</h3>
+                <p>Evaluate your understanding CSS selectors and properties covered in Chapter 2.</p>
+            </div>
+            <div class="practice-card locked" data-url="https://forms.gle/HsH4uTAeajcnbMCN6">
+                <h3>Quiz 3: Layout and Design</h3>
+                <p>Test your knowledge on layout and design, as covered in Chapter 3.</p>
+            </div>
+        </div>
     </section>
 
     <footer>
         <p>&copy; 2024 Educational Website. All rights reserved.</p>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            let progress = 0;
+            const totalChapters = 3;
+            const totalQuizzes = 3;
+            const progressIncrement = 100 / (totalChapters + totalQuizzes);
+            
+            // Elements
+            const progressBar = document.getElementById('progress-bar');
+            const progressPercentage = document.getElementById('progress-percentage');
+            const chapterCards = document.querySelectorAll('.chapter-card');
+            const practiceCards = document.querySelectorAll('.practice-card');
+            
+            // Initialize unlocked state
+            let unlockedChapters = 1;
+            let unlockedQuizzes = 1;
+
+            function updateProgress() {
+                progressBar.style.width = `${progress}%`;
+                progressPercentage.textContent = `Progress: ${Math.round(progress)}%`;
+            }
+
+            function unlockNextChapter(index) {
+                if (index < chapterCards.length - 1) {
+                    chapterCards[index + 1].classList.remove('locked');
+                }
+            }
+
+            function unlockNextQuiz(index) {
+                if (index < practiceCards.length - 1) {
+                    practiceCards[index + 1].classList.remove('locked');
+                }
+            }
+
+            // Chapter click handler
+            chapterCards.forEach((card, index) => {
+                if (index < unlockedChapters) {
+                    card.classList.remove('locked');
+                }
+                card.addEventListener('click', () => {
+                    if (!card.classList.contains('locked')) {
+                        // Open video
+                        window.open(card.getAttribute('data-url'), '_blank');
+                        // Update progress
+                        progress += progressIncrement;
+                        updateProgress();
+                        // Unlock next chapter
+                        unlockNextChapter(index);
+                        // Track unlocked chapters
+                        if (index + 1 >= unlockedChapters) {
+                            unlockedChapters = index + 2;
+                        }
+                    }
+                });
+            });
+
+            // Quiz click handler
+            practiceCards.forEach((card, index) => {
+                if (index < unlockedQuizzes) {
+                    card.classList.remove('locked');
+                }
+                card.addEventListener('click', () => {
+                    if (!card.classList.contains('locked')) {
+                        // Open quiz
+                        window.open(card.getAttribute('data-url'), '_blank');
+                        // Update progress
+                        progress += progressIncrement;
+                        updateProgress();
+                        // Unlock next quiz
+                        unlockNextQuiz(index);
+                        // Track unlocked quizzes
+                        if (index + 1 >= unlockedQuizzes) {
+                            unlockedQuizzes = index + 2;
+                        }
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
