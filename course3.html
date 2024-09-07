@@ -3,12 +3,241 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Course 3: JavaScript Fundamentals</title>
+    <title>Course 1: Introduction to HTML</title>
     <link rel="stylesheet" href="styles.css">
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* General website decoration */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #f0f4f7, #d9e2ec);
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        header, footer {
+            background-color: #988e04;
+            color: #fff;
+            padding: 15px;
+            text-align: center;
+        }
+        header h1 {
+            font-size: 28px;
+            margin: 0;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 15px;
+        }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        /* Progress bar styles */
+        #progress-container {
+            background-color: #f0f0f0;
+            border-radius: 5px;
+            height: 20px;
+            width: 100%;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        #progress-bar {
+            background-color: #988e04;
+            height: 100%;
+            width: 0%;
+        }
+        #progress-percentage {
+            font-size: 16px;
+            text-align: right;
+            margin-top: 5px;
+        }
+
+        /* Stylish HTML Description */
+        .html-description {
+            background-color: #f9f9f9;
+            border-left: 5px solid #988e04;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        .html-description h2 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        .html-description p {
+            color: #666;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        /* Chapter summary styling */
+        .chapter-summaries {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .chapter-card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 30%;
+            transition: transform 0.3s ease;
+            text-align: left;
+            cursor: pointer;
+            position: relative;
+        }
+        .chapter-card.locked {
+            pointer-events: none;
+            opacity: 0.6;
+        }
+        .chapter-card.locked:before {
+            content: "\f023"; /* Font Awesome padlock icon */
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: #988e04;
+            font-size: 24px;
+        }
+        .chapter-card h3 {
+            margin-bottom: 10px;
+            font-size: 20px;
+            color: #333;
+        }
+        .chapter-card p {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Practice set heading styling */
+        #practice-sets-heading {
+            font-size: 28px;
+            text-align: center;
+            color: #988e04;
+            text-shadow: 2px 2px #ffccbc;
+            margin: 40px 0 20px;
+        }
+
+        /* Practice set styling */
+        .practice-sets {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .practice-card {
+            background-color: #fff5f5;
+            border-left: 5px solid #988e04;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 30%;
+            transition: transform 0.3s ease;
+            text-align: left;
+            cursor: pointer;
+            position: relative;
+        }
+        .practice-card.locked {
+            pointer-events: none;
+            opacity: 0.6;
+        }
+        .practice-card.locked:before {
+            content: "\f023"; /* Font Awesome padlock icon */
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: #988e04;
+            font-size: 24px;
+        }
+        .practice-card h3 {
+            margin-bottom: 10px;
+            font-size: 20px;
+            color: #988e04;
+        }
+        .practice-card p {
+            font-size: 14px;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Additional Decoration */
+        footer {
+            margin-top: 40px;
+            padding: 10px;
+            background-color: #333;
+            color: #fff;
+        }
+    </style>
 </head>
 <body>
     <header>
-        <h1>Course 3: JavaScript Fundamentals</h1>
+        <div class="container">
+            <div class="left">
+                <h1>Course 3: Javascript fundamentals</h1>
+            </div>
+            <div class="right">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#chapters">Chapters</a></li>
+                    <li><a href="#practice-sets">Practice Sets</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    
+    <style>
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #988e04; /* Dark background color */
+            color: #fff; /* White text color */
+        }
+        
+        .left h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        
+        .right ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .right ul li {
+            margin-left: 20px;
+        }
+        
+        .right ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        
+        .right ul li a:hover {
+            color: #007BFF; /* Hover effect color */
+        }
+    </style>
+    
+    <!-- 
+    <header>
+        <h1>Course 1: Introduction to HTML</h1>
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
@@ -17,26 +246,142 @@
             </ul>
         </nav>
     </header>
-
-    <section id="chapters">
-        <h2>Chapters</h2>
-        <ul>
-            <li>Chapter 1: JavaScript Basics</li>
-            <li>Chapter 2: Functions and Events</li>
-            <li>Chapter 3: DOM Manipulation</li>
-        </ul>
+ -->
+    <!-- Progress bar section -->
+    <section id="progress">
+        <h2>Course Progress</h2>
+        <div id="progress-container">
+            <div id="progress-bar"></div>
+        </div>
+        <div id="progress-percentage">Progress: 0%</div>
     </section>
 
+    <!-- HTML Description Section -->
+    <section class="html-description">
+        <h2>What is Javascript?</h2>
+        <p>
+JavaScript is a high-level, dynamic programming language used primarily for web development. It allows developers to create interactive and dynamic content on websites, such as forms, animations, and real-time updates without needing to reload the page. It runs in the browser, making it a key technology for front-end web development, along with HTML and CSS.
+
+JavaScript can also be used on the server-side through environments like Node.js. It is an object-oriented language and supports features such as event handling, closures, and asynchronous programming through promises and async/await.</p>
+    </section>
+
+    <!-- Chapter Summaries Section -->
+    <section id="chapter-summaries" class="chapter-summaries">
+        <div class="chapter-card unlocked" data-url="https://www.youtube.com/embed/W6NZfCO5SIk?si=PiYf_nKZ3KwPX8GQ">
+            <h3>Chapter 1: Basics of Javascript</h3>
+            <p>This chapter covers the fundamental concepts of Javascript, including what Javascript is and how it's used in web pages. You’ll learn about the structure of an Javascript document and basic elements.he basics of JavaScript include understanding variables, which store data values and are declared using var, let, or const</p>
+        </div>
+        <div class="chapter-card locked" data-url="https://www.youtube.com/embed/P0XMXqDGttU?si=4s0qsDOYzTVRyRh9">
+            <h3>Chapter 2: Functions and events</h3>
+            <p>In the chapter on Functions and Events in JavaScript, you'll learn how to define and use functions, which are blocks of reusable code that can take parameters and return values. You'll explore different types of functions, including function expressions and modern arrow functions, as well as concepts like scope and closures, which determine how variables are accessed within functions. On the topic of events, you'll understand how to handle user interactions like clicks, keyboard inputs, and mouse movements using event listeners. You'll also learn about the event object, which provides details about the event, and how event propagation works, allowing you to manage how events flow through the document. This chapter equips you to create interactive, dynamic websites by combining the power of functions with event-driven programming.</p>
+        </div>
+        <div class="chapter-card locked" data-url="https://www.youtube.com/embed/5fb2aPlgoys?si=IBfUA_YFwsXEWqtD">
+            <h3>Chapter 3: DOM Manipulation</h3>
+            <p>In the chapter on DOM Manipulation, you will learn how to dynamically interact with and modify the HTML content and structure of a web page using JavaScript. You'll explore methods for selecting elements from the DOM, such as getElementById and querySelector, and how to update their content using properties like textContent and innerHTML. The chapter also covers how to manipulate element attributes with methods like getAttribute and setAttribute, and how to create, insert, and remove elements using functions like createElement, appendChild, and remove. Additionally, you'll learn how to adjust CSS styles directly through the style property and how to handle events to make your web page interactive. This chapter equips you with the skills to make live, responsive changes to your web pages, enhancing user engagement and functionality.</p>
+        </div>
+    </section>
+
+    <!-- Practice Sets Section with Stylish Heading -->
     <section id="practice-sets">
-        <h2>Practice Sets</h2>
-        <ul>
-            <li><a href="practice-sets/course3-basics.html">Quiz on JavaScript Basics</a></li>
-            <li><a href="practice-sets/course3-functions.html">Test on Functions</a></li>
-        </ul>
+        <h2 id="practice-sets-heading">Practice Sets</h2>
+        <div class="practice-sets">
+            <div class="practice-card unlocked" data-url="https://docs.google.com/forms/d/e/1FAIpQLSfyN8cbNegCAryKD9VYz7Q49ppfTaX4CgROIu0dVLdq1YMaAg/viewform?usp=sharing">
+                <h3>Quiz 1: Basics of Javascript</h3>
+                <p>This quiz covers the basics of Javascript as discussed in Chapter 1. Test your knowledge on fundamental concepts and tags.</p>
+            </div>
+            <div class="practice-card locked" data-url="https://forms.gle/nNUK1zu8C6EmirYH6">
+                <h3>Quiz 2: Functinos and events</h3>
+                <p>Evaluate your understanding of various Functions and events covered in Chapter 2.</p>
+            </div>
+            <div class="practice-card locked" data-url="https://forms.gle/HsH4uTAeajcnbMCN6">
+                <h3>Quiz 3: DOM Manipulation</h3>
+                <p>Test your knowledge on DOM Manipulation, as covered in Chapter 3.</p>
+            </div>
+        </div>
     </section>
 
     <footer>
         <p>&copy; 2024 Educational Website. All rights reserved.</p>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            let progress = 0;
+            const totalChapters = 3;
+            const totalQuizzes = 3;
+            const progressIncrement = 100 / (totalChapters + totalQuizzes);
+            
+            // Elements
+            const progressBar = document.getElementById('progress-bar');
+            const progressPercentage = document.getElementById('progress-percentage');
+            const chapterCards = document.querySelectorAll('.chapter-card');
+            const practiceCards = document.querySelectorAll('.practice-card');
+            
+            // Initialize unlocked state
+            let unlockedChapters = 1;
+            let unlockedQuizzes = 1;
+
+            function updateProgress() {
+                progressBar.style.width = `${progress}%`;
+                progressPercentage.textContent = `Progress: ${Math.round(progress)}%`;
+            }
+
+            function unlockNextChapter(index) {
+                if (index < chapterCards.length - 1) {
+                    chapterCards[index + 1].classList.remove('locked');
+                }
+            }
+
+            function unlockNextQuiz(index) {
+                if (index < practiceCards.length - 1) {
+                    practiceCards[index + 1].classList.remove('locked');
+                }
+            }
+
+            // Chapter click handler
+            chapterCards.forEach((card, index) => {
+                if (index < unlockedChapters) {
+                    card.classList.remove('locked');
+                }
+                card.addEventListener('click', () => {
+                    if (!card.classList.contains('locked')) {
+                        // Open video
+                        window.open(card.getAttribute('data-url'), '_blank');
+                        // Update progress
+                        progress += progressIncrement;
+                        updateProgress();
+                        // Unlock next chapter
+                        unlockNextChapter(index);
+                        // Track unlocked chapters
+                        if (index + 1 >= unlockedChapters) {
+                            unlockedChapters = index + 2;
+                        }
+                    }
+                });
+            });
+
+            // Quiz click handler
+            practiceCards.forEach((card, index) => {
+                if (index < unlockedQuizzes) {
+                    card.classList.remove('locked');
+                }
+                card.addEventListener('click', () => {
+                    if (!card.classList.contains('locked')) {
+                        // Open quiz
+                        window.open(card.getAttribute('data-url'), '_blank');
+                        // Update progress
+                        progress += progressIncrement;
+                        updateProgress();
+                        // Unlock next quiz
+                        unlockNextQuiz(index);
+                        // Track unlocked quizzes
+                        if (index + 1 >= unlockedQuizzes) {
+                            unlockedQuizzes = index + 2;
+                        }
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
