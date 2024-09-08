@@ -7,318 +7,326 @@
     <title>The UnCoders</title>
     <link rel="icon" href="logo.jpg"/>
     <style>
-        /* Existing styles here */
-body, h1, h2, h3, p, ul, li, form, input, textarea, button {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-html {
-    scroll-behavior: smooth;
-}
+        body, h1, h2, h3, p, ul, li, form, input, textarea, button {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            visibility: hidden; /* Hide content initially */
+        }
 
-body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    
-}
+		   /* Full-screen loading overlay */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            visibility: visible; /* Make visible initially */
+        }
 
-.container {
-    
-    background-color: #333; 
-    color: #fff;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-}
+        /* Logo animation */
+        .loading-logo {
+            height: 90px;
+            width: 90px;
+            border-radius: 50%;
+            background-image: url('logo.jpg');
+            background-size: cover;
+            animation: logoAnimation 2s ease-in-out forwards;
+        }
 
-.small-container{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-
-}
-
-.logo{
-    margin-left:10px;
-    margin-right: 20px;
-    height: 90px;
-    width: 90px;
-    border-radius: 20%;
-}
-
-ul{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
-    list-style: none;
-  
-}
-
-li{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
-    margin: 20px;
-}
-
-li a:hover{
-    color: #007BFF;
-}
-
-
-
-
-section {
-    padding: 2rem;
-    margin: 1rem 0;
-}
-
-section#home {
-    background: #f4f4f4;
-}
-
-section#courses{
-    background: #f4f4f4;
-}
-
-h2{
-    text-align: center;
-    margin: 15px;
-}
-a{
-    text-decoration: none;
-    color: white;
-}
-.course1{
-    height: 180px;
-    width: 395px;
-    border: 2px solid #ddd;
-    cursor: pointer;
-    padding: 1rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background:linear-gradient(to bottom left , #de582b , #e17014);
-    transition: all 0.6s ease;
-    border-radius: 12px;
-}
-
-.course1:hover{
-    background:linear-gradient(to bottom left , #ba3c12 , #dd6a0b);
-    transition: all 0.6s ease;
-}
-
-.course2{
-    height: 180px;
-    width: 395px;
-    border: 2px solid #ddd;
-    cursor: pointer;
-    padding: 1rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background:linear-gradient(to bottom left , #030881 , #276ce3);
-    transition: all 0.6s ease;
-    border-radius: 12px;
-}
-
-.course2:hover{
-    background:linear-gradient(to bottom left , #030881 , #044387);
-    transition: all 0.6s ease;
-}
-.course3{
-    height: 180px;
-    width: 395px;
-    border: 2px solid #ddd;
-    cursor: pointer;
-    padding: 1rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background:linear-gradient(to bottom left , #988e04 , #c3c90d);
-    transition: all 0.6s ease;
-    border-radius: 12px;
-}
-
-.course3:hover{
-    background:linear-gradient(to bottom left , #5c5603 , #787c04);
-    transition: all 0.6s ease;
-}
-
-.courses{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.form-data{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.contact-form {
-    width: 400px;
-    padding: 30px;
-    background-color: #333; /* Dark background for the form */
-    border-radius: 10px;
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5); /* Darker shadow for depth */
-   
-}
-
-.contact-form h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 24px;
-    color: #fff; /* White text for the heading */
-}
-
-.form-group {
-    margin-bottom: 15px;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 5px;
-    font-size: 16px;
-    color: #fff; /* White label text */
-}
-
-.form-group input, 
-.form-group textarea {
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #555; /* Darker border for form fields */
-    border-radius: 5px;
-    outline: none;
-    background-color: #444; /* Darker background for form fields */
-    color: #fff; /* White text for inputs */
-    transition: border 0.3s ease;
-}
-
-.form-group input::placeholder, 
-.form-group textarea::placeholder {
-    color: #aaa; /* Light gray for placeholders */
-}
-
-.form-group input:focus, 
-.form-group textarea:focus {
-    border-color: #007BFF; /* Blue border on focus */
-}
-
-button {
-    width: 100%;
-    padding: 10px 0;
-    background-color: #007BFF; /* Blue button */
-    border: none;
-    border-radius: 5px;
-    color: white;
-    font-size: 18px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-button:hover {
-    background-color: #0056b3; /* Darker blue on hover */
-}
-
-
-
-footer {
-    background: #333;
-    color: #fff;
-    text-align: center;
-    padding: 1rem 0;
-}
-
-
-
-
-
-
+        /* Keyframes for the logo animation */
+        @keyframes logoAnimation {
+            0% {
+                transform: scale(0); /* Start small */
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.1); /* Grow larger */
+                opacity: 0.8;
+            }
+            100% {
+                transform: scale(1); /* Return to normal size */
+                opacity: 1;
+            }
+        }
+        .container {
+            background-color: #333; 
+            color: #fff;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+        }
+        .small-container {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+        .logo {
+            margin-left: 10px;
+            margin-right: 20px;
+            height: 90px;
+            width: 90px;
+            border-radius: 20%;
+        }
+        ul {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            align-items: center;
+            list-style: none;
+        }
+        li {
+            display: flex;
+            align-items: center;
+            margin: 0 15px;
+        }
+        li a:hover {
+            color: #007BFF;
+        }
+        .profile-icon-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        .profile-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #007BFF;
+            color: #fff;
+            font-size: 18px;
+            font-weight: bold;
+            margin-left: 20px;
+            text-align: center;
+            line-height: 40px; /* Center text vertically */
+            background-size: cover; /* Ensure the image covers the icon */
+            background-position: center; /* Center the image */
+        }
+        .profile-menu {
+            display: none;
+            position: absolute;
+            top: 60px;
+            right: 20px;
+            background: #333;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+        .profile-menu a {
+            display: block;
+            padding: 10px;
+            color: #fff;
+            text-decoration: none;
+        }
+        .profile-menu a:hover {
+            background: #007BFF;
+        }
+        section {
+            padding: 2rem;
+            margin: 1rem 0;
+        }
+        section#home {
+            background: #f4f4f4;
+        }
+        section#courses {
+            background: #f4f4f4;
+        }
+        h2 {
+            text-align: center;
+            margin: 15px;
+        }
+        a {
+            text-decoration: none;
+            color: white;
+        }
+        .course1 {
+            height: 180px;
+            width: 395px;
+            border: 2px solid #ddd;
+            cursor: pointer;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(to bottom left, #de582b, #e17014);
+            transition: all 0.6s ease;
+            border-radius: 12px;
+        }
+        .course1:hover {
+            background: linear-gradient(to bottom left, #ba3c12, #dd6a0b);
+            transition: all 0.6s ease;
+        }
+        .course2 {
+            height: 180px;
+            width: 395px;
+            border: 2px solid #ddd;
+            cursor: pointer;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(to bottom left, #030881, #276ce3);
+            transition: all 0.6s ease;
+            border-radius: 12px;
+        }
+        .course2:hover {
+            background: linear-gradient(to bottom left, #030881, #044387);
+            transition: all 0.6s ease;
+        }
+        .course3 {
+            height: 180px;
+            width: 395px;
+            border: 2px solid #ddd;
+            cursor: pointer;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(to bottom left, #988e04, #c3c90d);
+            transition: all 0.6s ease;
+            border-radius: 12px;
+        }
+        .course3:hover {
+            background: linear-gradient(to bottom left, #5c5603, #787c04);
+            transition: all 0.6s ease;
+        }
+        .courses {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .form-data {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .contact-form {
+            width: 400px;
+            padding: 30px;
+            background-color: #333; /* Dark background for the form */
+            border-radius: 10px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5); /* Darker shadow for depth */
+        }
+        .contact-form h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #fff; /* White text for the heading */
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 16px;
+            color: #fff; /* White label text */
+        }
+        .form-group input, 
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #555; /* Darker border for form fields */
+            border-radius: 5px;
+            outline: none;
+            background-color: #444; /* Darker background for form fields */
+            color: #fff; /* White text for inputs */
+            transition: border 0.3s ease;
+        }
+        .form-group input::placeholder, 
+        .form-group textarea::placeholder {
+            color: #aaa; /* Light gray for placeholders */
+        }
+        .form-group input:focus, 
+        .form-group textarea:focus {
+            border-color: #007BFF; /* Blue border on focus */
+        }
+        button {
+            width: 100%;
+            padding: 10px 0;
+            background-color: #007BFF; /* Blue button */
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+        footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1rem 0;
+        }
+		
     </style>
 </head>
 
 <body>
-    <!-- <div class="container">
-    <header>
-        <h1>The UnCoders</h1>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#courses">Courses</a></li>
-                <li><a href="dashboard.html">Dashboard</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-       
-    </header>
-</div> -->
-
+ <!-- Loading screen -->
+    <div class="loading-screen">
+        <div class="loading-logo"></div>
+    </div>
     <div class="container">
         <div class="small-container">
             <img class="logo" src="logo.jpg"/>
-        <h1> The UnCoders</h1>
-    </div>
+            <h1>The Uncoders</h1>
+        </div>
         <ul>
             <li><a href="#home">Home</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#courses">Courses</a></li>
+            <li id="authLinks">
+                <a href="login.html" id="loginLink">Login</a>
+                <!-- Profile Icon with Dropdown Menu -->
+                <div class="profile-icon-container">
+                    <div id="profileIcon" class="profile-icon" style="display: none;"></div>
+                    <div id="profileMenu" class="profile-menu">
+                        <a href="profile.html" id="profileButton">Profile</a>
+                        <a href="#" id="logoutButton">Logout</a>
+                    </div>
+                </div>
+            </li>
             <li><a href="dashboard.html">Dashboard</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
     </div>
-    <!-- <nav class="navbar bg-dark">
-    <div class="container-fluid">
-      <a class="navbar-brand text-light align-items-center">The UnCoders</a>
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Features</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Pricing</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Dropdown link
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
-            </ul>
-          </li>
-        </ul>
-      </div> -->
-
-    </div>
-    </nav>
 
     <section id="home">
         <h2>Welcome to The UnCoders</h2>
         <p>Welcome to The Uncoders, your gateway to mastering the digital world! We offer a diverse range of courses
             designed for learners at every level, from coding and web development to data science and digital marketing.
             Our interactive quizzes and hands-on projects ensure that you not only learn but also apply your knowledge
-            in real-world scenarios. With expert instructors and flexible learning paths, you can study at your own pace
-            and track your progress as you grow your skills. Whether you're a student or professional, The Uncoders is
-            here to help you unlock your potential and succeed in today’s tech-driven world!</p>
+            in real-world scenarios. Whether you're a student or a professional, The Uncoders is here to help you unlock
+            your potential and succeed in today’s tech-driven world!</p>
     </section>
 
-    <section id="about">
+<section id="about">
         <h2>About Us</h2>
         <p>Greetings from The Uncoders, your one-stop shop for all things digital! Our courses cover everything from web
             development and coding to data science and digital marketing, and they are tailored for students at all
@@ -329,17 +337,17 @@ footer {
             professional or a student!</p>
     </section>
 
-
     <section id="courses">
         <h2>Courses</h2>
         <div class="courses">
             <a href="course1.html">
                 <div class="course1">
+				
                     <h3>Course 1: Introduction to HTML</h3>
                     <p>Learn the basics of HTML.</p>
+					
                 </div>
             </a>
-
             <a href="course2.html">
                 <div class="course2">
                     <h3>Course 2: Basics of CSS</h3>
@@ -351,22 +359,9 @@ footer {
                     <h3>Course 3: JavaScript Fundamentals</h3>
                     <p>Get to know the basics of JavaScript.</p>
                 </div>
+            </a>
         </div>
-        </a>
     </section>
-
-    <!-- <section id="contact">
-        <h2>Contact Us</h2>
-        <form id="contact-form">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required>
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
-            <label for="message">Message:</label>
-            <textarea id="message" name="message" required></textarea>
-            <button class="btn btn-primary" type="submit">Send</button>
-        </form>
-    </section> -->
 
     <section id="contact" class="form-data">
         <div class="contact-form">
@@ -396,7 +391,66 @@ footer {
         <p>&copy; 2024 The UnCoders. All rights reserved.</p>
     </footer>
 
-    <script src="scripts.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // After the logo animation finishes, fade out the loading screen
+        setTimeout(function () {
+            const loadingScreen = document.querySelector(".loading-screen");
+            loadingScreen.style.transition = "opacity 0.5s ease";
+            loadingScreen.style.opacity = "0";
+            
+            // After fading out the loading screen, hide it and reveal the content
+            setTimeout(function () {
+                loadingScreen.style.display = "none"; // Hide it completely
+                document.body.style.visibility = "visible"; // Show the website content
+            }, 500); // Match the opacity transition time (0.5s)
+        }, 2000); // Time for the logo animation (2 seconds)
+    });
+</script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const isLoggedIn = localStorage.getItem('isLoggedIn');
+            const authLinks = document.getElementById('authLinks');
+            const profileIcon = document.getElementById('profileIcon');
+            const loginLink = document.getElementById('loginLink');
+            const profileMenu = document.getElementById('profileMenu');
+            const logoutButton = document.getElementById('logoutButton');
+            const profileButton = document.getElementById('profileButton');
+
+            if (isLoggedIn === 'true') {
+                loginLink.style.display = 'none';
+                const username = localStorage.getItem('username') || 'U';
+                profileIcon.textContent = username.charAt(0).toUpperCase();
+                profileIcon.style.display = 'flex';
+
+                // Update profile picture if available
+                const profilePicUrl = localStorage.getItem('profilePicUrl');
+                if (profilePicUrl) {
+                    profileIcon.style.backgroundImage = `url(${profilePicUrl})`;
+                    profileIcon.style.backgroundColor = 'transparent'; // Make background color transparent if an image is set
+                    profileIcon.style.backgroundSize = 'cover'; // Ensure the image covers the icon
+                }
+
+                profileIcon.addEventListener('click', function() {
+                    profileMenu.style.display = profileMenu.style.display === 'none' || profileMenu.style.display === '' ? 'block' : 'none';
+                });
+
+                profileButton.addEventListener('click', function() {
+                    window.location.href = 'profile.html'; // Redirect to profile page
+                });
+
+                logoutButton.addEventListener('click', function() {
+                    localStorage.removeItem('isLoggedIn');
+                    localStorage.removeItem('username');
+                    localStorage.removeItem('profilePicUrl'); // Remove profile picture URL
+                    profileIcon.style.display = 'none';
+                    loginLink.style.display = 'inline';
+                    profileMenu.style.display = 'none';
+                    window.location.href = 'login.html'; // Redirect to login page after logout
+                });
+            }
+        });
+    </script>
 </body>
 
 </html>
