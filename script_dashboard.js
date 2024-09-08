@@ -6,7 +6,7 @@ const userProfile = {
 
 // Function to load user profile data
 function loadUserProfile() {
-    document.getElementById('userName').textContent = Hi, ${userProfile.name}$ !!;
+    document.getElementById('userName').textContent = Hi, ${userProfile.name} !!;
 }
 
 // Call the function to load profile data when the page loads
