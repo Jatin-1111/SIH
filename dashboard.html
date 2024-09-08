@@ -3,34 +3,207 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Educational Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 15px 30px; /* Increased padding for a wider header */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .profile {
+            display: flex;
+            align-items: center;
+        }
+
+        .profile img {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .dashboard {
+            padding: 20px;
+        }
+
+        section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        ul li {
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .progress-bar {
+            background-color: #e0e0e0;
+            border-radius: 4px;
+            width: 60%;
+            height: 10px;
+            margin-left: 10px;
+            overflow: hidden;
+        }
+
+        .progress {
+            background-color: #4caf50;
+            height: 100%;
+        }
+
+        canvas {
+            max-width: 400px;
+            max-height: 200px;
+            margin: 10px auto;
+        }
+
+        .course-pie-chart {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: #fff;
+        }
+
+        .footer-links a {
+            color: #fff;
+            margin: 0 10px;
+            text-decoration: none;
+
+        }
+
+        /* Add this CSS for page transition */
+         .fade-out {
+            opacity: 0;
+            transition: opacity 0.8s ease;
+        } 
+
+    </style>
 </head>
 <body>
     <header>
-        <h1>Dashboard</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="statistics.html">Statistics</a></li>
-            </ul>
-        </nav>
+        <div class="logo">The UnCoders</div>
+        <div class="profile">
+            <img id="profilePic" src="default-profile.jpg" alt="Profile Picture">
+            <span id="userName">John Doe</span>
+            <div class="dropdown">
+                <!-- Account settings options -->
+            </div>
+        </div>
     </header>
 
-    <section id="stats">
-      <h2>Total finishing time</h2>
-        <li><b></b>Toal time to complete course 1 : 30mins</b></li>
-                <li><b></b>Toal time to complete course 2 : 30mins</b></li>
-                        <li><b></b>Toal time to complete course 3 : 30mins</b></li>
-        <div id="course-stats">
-            <!-- Statistics will be loaded here by JavaScript -->
-        </div>
-    </section>
+    <div class="dashboard">
+        <section class="time-spent">
+            <h2>Time Spent on Courses</h2>
+            <ul>
+                <li>
+                    <span>Course 1</span>
+                    <span>10 hours</span>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 50%;"></div>
+                    </div>
+                </li>
+                <li>
+                    <span>Course 2</span>
+                    <span>8 hours</span>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 40%;"></div>
+                    </div>
+                </li>
+            </ul>
+            <canvas id="timeChart"></canvas>
+        </section>
+
+        <section class="overall-progress">
+            <h2>Overall Progress</h2>
+            <canvas id="overallProgressChart"></canvas>
+            <div class="progress-stats">
+                <p>Courses Completed: 2</p>
+                <p>Courses In Progress: 3</p>
+                <p>Courses Not Started: 1</p>
+            </div>
+        </section>
+
+        <section class="course-progress">
+            <h2>Course-Specific Progress</h2>
+            <div class="course-pie-chart">
+                <canvas id="course1Chart"></canvas>
+                <canvas id="course2Chart"></canvas>
+                <!-- Add more pie charts as needed -->
+            </div>
+        </section>
+
+        <section class="recent-activity">
+            <h2>Recent Activity</h2>
+            <ul>
+                <li>Completed Lesson 5 of Course 1</li>
+                <li>Started Course 2</li>
+                <!-- Add more recent activities -->
+            </ul>
+        </section>
+
+        <section class="recommended-courses">
+            <h2>Recommended Courses</h2>
+            <ul>
+                <li>Course 4: Advanced Topics</li>
+                <li>Course 5: Beginner’s Guide</li>
+                <!-- Add more recommended courses -->
+            </ul>
+        </section>
+    </div>
 
     <footer>
-        <p>&copy; 2024 Educational Website. All rights reserved.</p>
+        <p>&copy; 2024 EduWebsite. All rights reserved.</p>
+        <div class="footer-links">
+            <a href="#">Help</a>
+            <a href="#">Support</a>
+            <a href="#">Privacy Policy</a>
+        </div>
     </footer>
-
-    <script src="scripts.js"></script>
+    <script> 
+        document.addEventListener("DOMContentLoaded", function() {
+            document.body.style.opacity = "0"; // Start hidden
+            setTimeout(function() {
+                document.body.style.transition = "opacity 0.8s ease"; // Apply transition
+                document.body.style.opacity = "1"; // Fade in
+            }, 100); // Slight delay to ensure the transition works
+        });
+    </script>
+    <script src="script_dashboard.js"></script>
 </body>
 </html>
