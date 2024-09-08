@@ -88,7 +88,13 @@ button {
 button:hover {
     background-color: #0056b3; /* Darker blue on hover */
 }
-    </style>
+/* Add this CSS for page transition */
+.fade-out {
+    opacity: 0;
+    transition: opacity 0.4s ease;
+} 
+
+</style>
 </head>
 
 <body>
@@ -133,6 +139,15 @@ button:hover {
                 alert('Sign up successful! You can now log in.');
                 window.location.href = 'login.html';
             }
+        });
+    </script>
+    <script> 
+        document.addEventListener("DOMContentLoaded", function() {
+            document.body.style.opacity = "0"; // Start hidden
+            setTimeout(function() {
+                document.body.style.transition = "opacity 0.4s ease"; // Apply transition
+                document.body.style.opacity = "1"; // Fade in
+            }, 100); // Slight delay to ensure the transition works
         });
     </script>
 </body>
