@@ -1,19 +1,19 @@
 // Example user profile data
+// Retrieve user profile data from localStorage or fallback to default values
 const userProfile = {
-    name: "John Doe",
-    profilePic: "https://example.com/path-to-profile-pic.jpg"
+    name: localStorage.getItem('username') || 'Guest', 
 };
 
 // Function to load user profile data
 function loadUserProfile() {
     document.getElementById('userName').textContent = userProfile.name;
-    document.getElementById('profilePic').src = userProfile.profilePic;
 }
 
 // Call the function to load profile data when the page loads
 window.onload = function() {
     loadUserProfile();
 };
+
 
 // Overall Progress Donut Chart
 const overallProgressCtx = document.getElementById('overallProgressChart').getContext('2d');
