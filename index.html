@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The UnCoders</title>
     <link rel="icon" href="logo.jpg"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@3.6.12/dist/css/splide.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@3.6.12/dist/js/splide.min.js"></script>
+    
     <style>
         body, h1, h2, h3, p, ul, li, form, input, textarea, button {
             margin: 0;
@@ -283,6 +286,153 @@
             text-align: center;
             padding: 1rem 0;
         }
+        /* Slideshow container
+        .slideshow-container {
+            position: relative;
+            max-width: 100%;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        /* Hide all slides by default 
+        .slide {
+            display: none;
+        }
+
+        /* Image in the slideshow 
+        .slide img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        /* Fade animation 
+        .fade {
+            animation-name: fade;
+            animation-duration: 1.5s;
+        }
+
+        @keyframes fade {
+            from {opacity: 0.4}
+            to {opacity: 1}
+        }
+
+        /* Previous and next buttons 
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -22px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+        }
+
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+        .prev:hover, .next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+         */
+       /* Slideshow Container */
+        .splide {
+            max-width: 100%;
+            height: 918px; /* Match the height of the example */
+            position: relative;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        /* Each Slide */
+        .splide__slide {
+            position: relative;
+            height: 100%;
+        }
+
+        /* Image inside each slide */
+        .splide__slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensures the image covers the slide area */
+            object-position: center; /* Adjusts position like in the example */
+        }
+
+        /* Arrows */
+        .splide__arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            border: none;
+            color: white;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 50%;
+            z-index: 10;
+        }
+
+        .splide__arrow--prev {
+            left: 10px;
+        }
+
+        .splide__arrow--next {
+            right: 10px;
+        }
+
+        /* Pagination (Dots) */
+        .splide__pagination {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+        }
+
+        .splide__pagination__page {
+            width: 12px;
+            height: 12px;
+            background-color: white;
+            border-radius: 50%;
+            margin: 0 5px;
+            cursor: pointer;
+        }
+
+        .splide__pagination__page.is-active {
+            background-color: #007bff;
+        }
+
+        /* Slide Content (Title and Description) */
+        .slide-content {
+            position: absolute;
+            top: 50%; /* Vertically center */
+            left: 25%; /* Horizontally center between left and center */
+            transform: translate(-50%, -50%); /* Adjust the element to perfectly center at the desired point */
+            color: white; /* Ensure text is visible over the image */
+            text-shadow: 1px 1px 5px black; /* Adds shadow to make the text stand out */
+            z-index: 10; /* Ensure the text appears above the image */
+            text-align: center; /* Center the text itself */
+        }
+
+        .slide-content h1 {
+            font-size: 3rem; /* Adjust as needed */
+            margin: 0;
+        }
+
+        .slide-content p {
+            font-size: 1.5rem; /* Adjust as needed */
+            margin-top: 10px;
+        }
+
+
+
 		
     </style>
 </head>
@@ -316,6 +466,42 @@
             <li><a href="#contact">Contact</a></li>
         </ul>
     </div>
+
+    <div class="splide" id="splide01">
+        <div class="splide__track">
+            <ul class="splide__list">
+                <!-- Slide 1 -->
+                <li class="splide__slide">
+                    <img src="image1.jpeg" alt="Slide 1" class="slide-img">
+                    <div class="slide-content">
+                        <h1>The UnCoders</h1>
+                        <p>Uncode your coding potentials</p>
+                    </div>
+                </li>
+                <!-- Slide 2 -->
+                <li class="splide__slide">
+                    <img src="image2.jpg" alt="Slide 2" class="slide-img" />
+                    <div class="slide-content">
+                        <h1>Slide 2 Title</h1>
+                        <p>Slide 2 Description</p>
+                    </div>
+                </li>
+                <!-- Slide 3 -->
+                <li class="splide__slide">
+                    <img src="image3.jpg" alt="Slide 3" class="slide-img" />
+                    <div class="slide-content">
+                        <h1>Slide 3 Title</h1>
+                        <p>Slide 3 Description</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="splide__arrows">
+            <button class="splide__arrow splide__arrow--prev">Prev</button>
+            <button class="splide__arrow splide__arrow--next">Next</button>
+        </div>
+    </div>
+    
 
     <section id="home">
         <h2>Welcome to The UnCoders</h2>
@@ -451,6 +637,71 @@
             }
         });
     </script>
+
+<!-- <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const dashboardLink = document.querySelector('a[href="dashboard.html"]');
+        
+        dashboardLink.addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent default navigation
+
+            // Add the fade-out class to the body
+            document.body.classList.add('fade-out');
+            
+            // Wait for the animation to complete before navigating
+            setTimeout(function() {
+                window.location.href = 'dashboard.html';
+            }, 500); // Match the CSS transition time (0.5s)
+        });
+    });
+</script>
+ -->
+
+ <!-- <script>
+    let slideIndex = 0;
+    showSlides(slideIndex);
+
+    // Function to show the slides
+    function showSlides(n) {
+        let slides = document.getElementsByClassName("slide");
+        
+        if (n >= slides.length) { slideIndex = 0 }
+        if (n < 0) { slideIndex = slides.length - 1 }
+        
+        for (let i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        slides[slideIndex].style.display = "block";
+    }
+
+    // Function to change the slides
+    function changeSlide(n) {
+        slideIndex += n;
+        showSlides(slideIndex);
+    }
+
+    // Auto slideshow - optional
+    setInterval(function() {
+        changeSlide(1);
+    }, 5000); // Change image every 5 seconds
+</script> -->
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            new Splide('#splide01', {
+                type: 'fade',    // For smooth fade transitions
+                autoplay: true,  // Enable autoplay
+                interval: 5000,  // Slide interval in milliseconds
+                pauseOnHover: true, 
+                arrows: true,    // Show arrows
+                pagination: true // Enable pagination (dots)
+            }).mount();
+        });
+    </script>
+
+
+
 </body>
 
 </html>
