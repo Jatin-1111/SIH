@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 450px; /* Increased width */
+            max-width: 90%;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #666;
+        }
+        .form-group input, .form-group textarea {
+            width: calc(100% - 22px); /* Adjusted width */
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .form-group input[type="file"] {
+            display: none;
+        }
+        .form-group .custom-file-upload {
+            display: inline-block;
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background: #007bff;
+            color: #fff;
+            cursor: pointer;
+            text-align: center;
+            margin-top: 10px;
+            width: 100%;
+        }
+        .form-group .custom-file-upload:hover {
+            background-color: #0056b3;
+        }
+        .form-group .profile-pic {
+            display: block;
+            margin: 0 auto 10px;
+            border-radius: 50%;
+            width: 120px; /* Increased width */
+            height: 120px; /* Increased height */
+            object-fit: cover;
+            background: #ddd;
+        }
+        .form-group textarea {
+            resize: vertical;
+            height: 120px; /* Increased height */
+        }
+        .form-group button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            background-color: #007bff;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .form-group button:hover {
+            background-color: #0056b3;
+        }
+        .edit-button, .go-back-button {
+            margin-top: 10px;
+            display: none; /* Hidden by default */
+            text-align: center;
+        }
+        .edit-button button, .go-back-button button {
+            background-color: #28a745;
+        }
+        .edit-button button:hover, .go-back-button button:hover {
+            background-color: #218838;
+        }
+        .go-back-button button {
+            background-color: #dc3545; /* Red background for Go Back */
+        }
+        .go-back-button button:hover {
+            background-color: #c82333;
+        }
+        .submit-button {
+            display: block; /* Visible by default */
+        }
+    </style>
+</head>
+<body onload="loadProfile()">
+    <div class="container">
+        <h2>User Profile</h2>
+        <form id="profileForm">
+            <div class="form-group">
+                <img id="preview" class="profile-pic" src="" alt="Profile Picture">
+                <label for="profilePic" class="custom-file-upload">
+                    Upload your image
+                </label>
+                <input type="file" id="profilePic" accept="image/*" onchange="previewImage(event)">
+            </div>
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" pattern="\d{10}" maxlength="10" required>
+                <small id="phoneError" style="color: red; display: none;">Please enter a valid 10-digit phone number.</small>
+            </div>
+            <div class="form-group">
+                <label for="age">Age:</label>
+                <input type="number" id="age" required>
+            </div>
+            <div class="form-group">
+                <label for="address">Address:</label>
+                <input type="text" id="address" required>
+            </div>
+            <div class="form-group">
+                <button type="button" id="submitButton" class="submit-button" onclick="submitForm()">Submit</button>
+            </div>
+            <div class="edit-button">
+                <button type="button" onclick="editProfile()">Edit</button>
+            </div>
+            <div class="go-back-button">
+                <button type="button" onclick="goBack()">Go Back</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function previewImage(event) {
+            const file = event.target.files[0];
+            const reader = new FileReader();
+            reader.onload = function() {
+                document.getElementById('preview').src = reader.result;
+            };
+            if (file) {
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function submitForm() {
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const age = document.getElementById('age').value;
+            const address = document.getElementById('address').value;
+
+            // Validate phone number
+            const phonePattern = /^\d{10}$/;
+            const phoneError = document.getElementById('phoneError');
+            if (!phonePattern.test(phone)) {
+                phoneError.style.display = 'block';
+                return;
+            } else {
+                phoneError.style.display = 'none';
+            }
+
+            // Check if all fields are filled
+            if (!name || !email || !phone || !age || !address) {
+                alert("All fields are required!");
+                return;
+            }
+
+            // Save data to local storage
+            localStorage.setItem('profile', JSON.stringify({
+                name: name,
+                email: email,
+                phone: phone,
+                age: age,
+                address: address,
+                profilePic: document.getElementById('preview').src
+            }));
+
+            // Disable form fields
+            document.querySelectorAll('#profileForm input, #profileForm textarea').forEach(el => {
+                el.disabled = true;
+            });
+
+            // Hide Submit button and show Edit and Go Back buttons
+            document.getElementById('submitButton').style.display = 'none';
+            document.querySelector('.edit-button').style.display = 'block';
+            document.querySelector('.go-back-button').style.display = 'block';
+        }
+
+        function editProfile() {
+            // Enable form fields and show Submit button
+            document.querySelectorAll('#profileForm input, #profileForm textarea').forEach(el => {
+                el.disabled = false;
+            });
+            document.getElementById('submitButton').style.display = 'block';
+            document.querySelector('.edit-button').style.display = 'none';
+            document.querySelector('.go-back-button').style.display = 'none';
+        }
+
+        function goBack() {
+            window.location.href = 'index.html'; // Redirect to index.html
+        }
+
+        function loadProfile() {
+            const profile = JSON.parse(localStorage.getItem('profile'));
+            if (profile) {
+                document.getElementById('name').value = profile.name || '';
+                document.getElementById('email').value = profile.email || '';
+                document.getElementById('phone').value = profile.phone || '';
+                document.getElementById('age').value = profile.age || '';
+                document.getElementById('address').value = profile.address || '';
+                document.getElementById('preview').src = profile.profilePic || '';
+                document.querySelectorAll('#profileForm input, #profileForm textarea').forEach(el => {
+                    el.disabled = true;
+                });
+                document.getElementById('submitButton').style.display = 'none';
+                document.querySelector('.edit-button').style.display = 'block';
+                document.querySelector('.go-back-button').style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - The UnCoders</title>
+    <link rel="icon" href="logo.jpg"/>
+    <style>
+        /* Add styles for signup page similar to login page styling */
+body, h1, form, input, button {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.signup-form {
+    width: 400px;
+    padding: 30px;
+    background-color: #333; /* Dark background for the form */
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5); /* Darker shadow for depth */
+}
+
+.signup-form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #fff; /* White text for the heading */
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 16px;
+    color: #fff; /* White label text */
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #555; /* Darker border for form fields */
+    border-radius: 5px;
+    outline: none;
+    background-color: #444; /* Darker background for form fields */
+    color: #fff; /* White text for inputs */
+    transition: border 0.3s ease;
+}
+
+.form-group input::placeholder {
+    color: #aaa; /* Light gray for placeholders */
+}
+
+.form-group input:focus {
+    border-color: #007BFF; /* Blue border on focus */
+}
+
+button {
+    width: 100%;
+    padding: 10px 0;
+    background-color: #007BFF; /* Blue button */
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+    </style>
+</head>
+
+<body>
+    <div class="signup-form">
+        <h2>Sign Up</h2>
+        <form id="signupForm">
+            <div class="form-group">
+                <label for="newUsername">Username:</label>
+                <input type="text" id="newUsername" placeholder="Enter your username" required>
+            </div>
+
+            <div class="form-group">
+                <label for="newPassword">Password:</label>
+                <input type="password" id="newPassword" placeholder="Enter your password" required>
+            </div>
+
+            <button type="submit">Sign Up</button>
+        </form>
+        <p style="color: #fff; text-align: center; margin-top: 10px;">
+            Already have an account? <a href="login.html" style="color: #007BFF;">Login</a>
+        </p>
+    </div>
+
+    <script>
+        document.getElementById('signupForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const username = document.getElementById('newUsername').value;
+            const password = document.getElementById('newPassword').value;
+
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+
+            // Check if username already exists
+            const userExists = users.some(user => user.username === username);
+
+            if (userExists) {
+                alert('Username already exists. Please choose a different username.');
+            } else {
+                // Add new user
+                users.push({ username, password });
+                localStorage.setItem('users', JSON.stringify(users));
+                alert('Sign up successful! You can now log in.');
+                window.location.href = 'login.html';
+            }
+        });
+    </script>
+</body>
+
+</html>
