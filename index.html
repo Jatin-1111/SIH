@@ -342,13 +342,16 @@
         }
          */
        /* Slideshow Container */
+        /* Slideshow Container */
         .splide {
             max-width: 100%;
-            height: 918px; /* Match the height of the example */
+            height: 682px; /* Set the height to match the image dimensions */
+            width: 100%; /* Full width */
             position: relative;
-            margin: 0 auto;
+            margin: 20px auto; /* Adds space below the navbar */
             overflow: hidden;
-            border-radius: 10px;
+            border-radius: 20px; /* Creates curved corners */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow for a raised effect */
         }
 
         /* Each Slide */
@@ -362,7 +365,8 @@
             width: 100%;
             height: 100%;
             object-fit: cover; /* Ensures the image covers the slide area */
-            object-position: center; /* Adjusts position like in the example */
+            object-position: center; /* Center the image */
+            border-radius: 20px; /* Matches the curved corners of the container */
         }
 
         /* Arrows */
@@ -430,10 +434,29 @@
             font-size: 1.5rem; /* Adjust as needed */
             margin-top: 10px;
         }
+        /* Custom Styling for the Arrow Buttons */
+        .splide__arrow {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            z-index: 10;
+        }
 
+        .splide__arrow:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
 
+        .splide__arrow--prev {
+            left: 10px;
+        }
 
-		
+        .splide__arrow--next {
+            right: 10px;
+        }
     </style>
 </head>
 
@@ -472,35 +495,41 @@
             <ul class="splide__list">
                 <!-- Slide 1 -->
                 <li class="splide__slide">
-                    <img src="image1.jpeg" alt="Slide 1" class="slide-img">
-                    <div class="slide-content">
+                    <img src="image.png" alt="Slide 1" class="slide-img">
+                    <!-- <div class="slide-content">
                         <h1>The UnCoders</h1>
                         <p>Uncode your coding potentials</p>
-                    </div>
+                    </div> -->
                 </li>
                 <!-- Slide 2 -->
                 <li class="splide__slide">
-                    <img src="image2.jpg" alt="Slide 2" class="slide-img" />
-                    <div class="slide-content">
+                    <img src="image2.jpeg" alt="Slide 2" class="slide-img">
+                    <!-- <div class="slide-content">
                         <h1>Slide 2 Title</h1>
                         <p>Slide 2 Description</p>
-                    </div>
+                    </div> -->
                 </li>
                 <!-- Slide 3 -->
                 <li class="splide__slide">
-                    <img src="image3.jpg" alt="Slide 3" class="slide-img" />
-                    <div class="slide-content">
+                    <img src="image3.png" alt="Slide 3" class="slide-img">
+                    <!-- <div class="slide-content">
                         <h1>Slide 3 Title</h1>
                         <p>Slide 3 Description</p>
-                    </div>
+                    </div> -->
                 </li>
             </ul>
         </div>
+    
+        <!-- Custom Arrows -->
         <div class="splide__arrows">
-            <button class="splide__arrow splide__arrow--prev">Prev</button>
-            <button class="splide__arrow splide__arrow--next">Next</button>
+            <button class="splide__arrow splide__arrow--prev"><</button>
+            <button class="splide__arrow splide__arrow--next">></button>
         </div>
+    
+        <!-- Pagination -->
+        <ul class="splide__pagination"></ul>
     </div>
+    
     
 
     <section id="home">
@@ -699,6 +728,19 @@
             }).mount();
         });
     </script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        new Splide('#splide01', {
+            type: 'fade',        // Smooth fade transitions
+            autoplay: true,      // Enable autoplay
+            interval: 5000,      // Slide interval in milliseconds
+            pauseOnHover: true, 
+            arrows: true,        // Show arrows for navigation
+            pagination: true,    // Enable pagination (dots)
+            rewind: true         // Enable looping back to the first slide after the last
+        }).mount();
+    });
+</script>
 
 
 
