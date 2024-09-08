@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,8 +16,7 @@
         header {
             background-color: #333;
             color: #fff;
-            padding: 15px 30px;
-            /* Increased padding for a wider header */
+            padding: 18px 33px; /* Increased padding for a wider header */
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -106,17 +104,13 @@
             color: #fff;
             margin: 0 10px;
             text-decoration: none;
-
         }
 
-        /* Add this CSS for page transition */
-        .fade-out {
-            opacity: 0;
-            transition: opacity 0.8s ease;
+        .time-format {
+            font-weight: bold;
         }
     </style>
 </head>
-
 <body>
     <header>
         <div class="logo">The UnCoders</div>
@@ -136,16 +130,23 @@
             <ul>
                 <li>
                     <span>Course 1</span>
-                    <span>10 hours</span>
+                    <span id="course1Time">0 mins </span>
                     <div class="progress-bar">
-                        <div class="progress" style="width: 50%;"></div>
+                        <div class="progress" id="course1Progress" style="width: 0%;"></div>
                     </div>
                 </li>
                 <li>
                     <span>Course 2</span>
-                    <span>8 hours</span>
+                    <span>5 hours</span>
                     <div class="progress-bar">
                         <div class="progress" style="width: 40%;"></div>
+                    </div>
+                </li>
+                <li>
+                    <span>Course 3</span>
+                    <span>8 hours</span>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 60%;"></div>
                     </div>
                 </li>
             </ul>
@@ -167,7 +168,7 @@
             <div class="course-pie-chart">
                 <canvas id="course1Chart"></canvas>
                 <canvas id="course2Chart"></canvas>
-                <!-- Add more pie charts as needed -->
+                <canvas id="course3Chart"></canvas>
             </div>
         </section>
 
@@ -176,7 +177,7 @@
             <ul>
                 <li>Completed Lesson 5 of Course 1</li>
                 <li>Started Course 2</li>
-                <!-- Add more recent activities -->
+                <li>Completed Module 3 of Course 3</li>
             </ul>
         </section>
 
@@ -185,7 +186,7 @@
             <ul>
                 <li>Course 4: Advanced Topics</li>
                 <li>Course 5: Beginner’s Guide</li>
-                <!-- Add more recommended courses -->
+                <li>Course 6: Expert Insights</li>
             </ul>
         </section>
     </div>
@@ -198,14 +199,7 @@
             <a href="#">Privacy Policy</a>
         </div>
     </footer>
-    <!-- <script>  -->
-    <!-- // document.addEventListener("DOMContentLoaded", function() {
-        //     document.body.style.opacity = "0"; // Start hidden
-        //     setTimeout(function() {
-        //         document.body.style.transition = "opacity 0.8s ease"; // Apply transition
-        //         document.body.style.opacity = "1"; // Fade in
-        //     }, 100); // Slight delay to ensure the transition works
-        // }); -->
+
     <script>
         // Retrieve and display the username from localStorage
         document.addEventListener("DOMContentLoaded", function () {
@@ -229,8 +223,133 @@
 
 
     </script>
-    // </script>
-    <script src="script_dashboard.js"></script>
-</body>
+<script>
+        // Function to fetch and format time spent on Course 1 from localStorage
+        function fetchCourseTimeData() {
+            // Retrieve the time spent on Course 1 from localStorage
+            const timeSpentSeconds = localStorage.getItem('course1TimeSpent');
 
+            if (timeSpentSeconds) {
+                // Convert time spent from seconds to total hours and minutes
+                const totalSeconds = parseInt(timeSpentSeconds, 10);
+                const formattedTime = formatTime(totalSeconds);
+
+                // Update the UI
+                document.getElementById('course1Time').textContent = formattedTime;
+
+                // Update progress bar (Assuming progress is a percentage of total 10 hours = 100%)
+                const totalCourseHours = 10; // Total hours considered for full progress
+                const progressPercentage = Math.min((totalSeconds / (totalCourseHours * 3600)) * 100, 100);
+                document.getElementById('course1Progress').style.width = `${progressPercentage}%`;
+            } else {
+                console.error('Time data not found in localStorage for Course 1');
+            }
+        }
+
+        // Function to format time in seconds to minutes and seconds
+        function formatTime(seconds) {
+            const minutes = Math.floor(seconds / 60);
+            seconds %= 60;
+
+            return `${minutes} mins ${seconds} secs`;
+        }
+
+        // Overall Progress Donut Chart
+        const overallProgressCtx = document.getElementById('overallProgressChart').getContext('2d');
+        const overallProgressChart = new Chart(overallProgressCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Completed', 'In Progress', 'Not Started'],
+                datasets: [{
+                    data: [50, 30, 20],
+                    backgroundColor: ['#4caf50', '#ffeb3b', '#f44336'],
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    }
+                }
+            }
+        });
+
+        // Time Spent Line Chart
+        const timeChartCtx = document.getElementById('timeChart').getContext('2d');
+        const timeChart = new Chart(timeChartCtx, {
+            type: 'line',
+            data: {
+                labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                datasets: [{
+                    label: 'Time Spent (hours)',
+                    data: [1, 2, 1, 3, 2, 4, 5],
+                    fill: false,
+                    borderColor: '#4caf50',
+                    tension: 0.1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                }
+            }
+        });
+
+        // Course-Specific Pie Charts
+        const course1Ctx = document.getElementById('course1Chart').getContext('2d');
+        const course1Chart = new Chart(course1Ctx, {
+            type: 'pie',
+            data: {
+                labels: ['Completed', 'Remaining'],
+                datasets: [{
+                    data: [60, 40],
+                    backgroundColor: ['#4caf50', '#e0e0e0'],
+                }]
+            },
+            options: {
+                responsive: true,
+            }
+        });
+
+        const course2Ctx = document.getElementById('course2Chart').getContext('2d');
+        const course2Chart = new Chart(course2Ctx, {
+            type: 'pie',
+            data: {
+                labels: ['Completed', 'Remaining'],
+                datasets: [{
+                    data: [40, 60],
+                    backgroundColor: ['#4caf50', '#e0e0e0'],
+                }]
+            },
+            options: {
+                responsive: true,
+            }
+        });
+
+        const course3Ctx = document.getElementById('course3Chart').getContext('2d');
+        const course3Chart = new Chart(course3Ctx, {
+            type: 'pie',
+            data: {
+                labels: ['Completed', 'Remaining'],
+                datasets: [{
+                    data: [70, 30],
+                    backgroundColor: ['#4caf50', '#e0e0e0'],
+                }]
+            },
+            options: {
+                responsive: true,
+            }
+        });
+
+        // Call the function to load profile data and fetch course time data when the page loads
+        window.onload = function() {
+            loadUserProfile();
+            fetchCourseTimeData();
+        };
+    </script>
+</body>
 </html>
