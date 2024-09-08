@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,7 +17,8 @@
         header {
             background-color: #333;
             color: #fff;
-            padding: 15px 30px; /* Increased padding for a wider header */
+            padding: 15px 30px;
+            /* Increased padding for a wider header */
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -108,19 +110,19 @@
         }
 
         /* Add this CSS for page transition */
-         .fade-out {
+        .fade-out {
             opacity: 0;
             transition: opacity 0.8s ease;
-        } 
-
+        }
     </style>
 </head>
+
 <body>
     <header>
         <div class="logo">The UnCoders</div>
         <div class="profile">
-            <img id="profilePic" src="default-profile.jpg" alt="Profile Picture">
-            <span id="userName">John Doe</span>
+            <!-- <img id="profilePic" src="default-profile.jpg" alt="Profile Picture"> -->
+            <span id="userName">User</span>
             <div class="dropdown">
                 <!-- Account settings options -->
             </div>
@@ -195,15 +197,39 @@
             <a href="#">Privacy Policy</a>
         </div>
     </footer>
-    <script> 
-        document.addEventListener("DOMContentLoaded", function() {
-            document.body.style.opacity = "0"; // Start hidden
-            setTimeout(function() {
-                document.body.style.transition = "opacity 0.8s ease"; // Apply transition
-                document.body.style.opacity = "1"; // Fade in
-            }, 100); // Slight delay to ensure the transition works
-        });
+    <!-- <script>  -->
+    <!-- // document.addEventListener("DOMContentLoaded", function() {
+        //     document.body.style.opacity = "0"; // Start hidden
+        //     setTimeout(function() {
+        //         document.body.style.transition = "opacity 0.8s ease"; // Apply transition
+        //         document.body.style.opacity = "1"; // Fade in
+        //     }, 100); // Slight delay to ensure the transition works
+        // }); -->
+    <script>
+        // Retrieve and display the username from localStorage
+        document.addEventListener("DOMContentLoaded", function () {
+    // Retrieve the username from localStorage
+    const username = localStorage.getItem('username');
+    
+    // Check if a username exists in localStorage and update the profile display
+    if (username) {
+        document.getElementById('userName').textContent = username;
+    } else {
+        document.getElementById('userName').textContent = 'Guest';
+    }
+
+    // Fade-in effect for page transition
+    document.body.style.opacity = "0";
+    setTimeout(function () {
+        document.body.style.transition = "opacity 0.8s ease";
+        document.body.style.opacity = "1";
+    }, 100);
+});
+
+
     </script>
+    // </script>
     <script src="script_dashboard.js"></script>
 </body>
+
 </html>
