@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -179,6 +180,10 @@
             padding: 10px;
             background-color: #333;
             color: #fff;
+        }
+        .fade-out {
+            opacity: 0;
+            transition: opacity 0.5s ease;
         }
     </style>
 </head>
@@ -380,5 +385,129 @@
             });
         });
     </script>
+	  <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize variables to track time
+            let sessionStart = Date.now(); // Time when the user enters the site
+            let storedTime = localStorage.getItem('timeSpent') ? parseInt(localStorage.getItem('timeSpent')) : 0;
+
+            // Function to update the total time spent in localStorage
+            function updateTimeSpent() {
+                let sessionEnd = Date.now(); // Time when the user is leaving the site
+                let sessionDuration = Math.floor((sessionEnd - sessionStart) / 1000); // Calculate the duration in seconds
+                let totalTimeSpent = storedTime + sessionDuration; // Add this session's time to the previous total
+
+                // Save the updated time in localStorage
+                localStorage.setItem('timeSpent', totalTimeSpent);
+
+                console.log(`Time spent this session: ${sessionDuration} seconds`);
+                console.log(`Total time spent: ${totalTimeSpent} seconds`);
+            }
+
+            // Event listener for when the user leaves the page
+            window.addEventListener('beforeunload', updateTimeSpent);
+
+            // Optional: Display the total time spent when the user returns
+            console.log(`Total time spent from previous sessions: ${storedTime} seconds`);
+        });
+    </script>
+    <script> 
+        document.addEventListener("DOMContentLoaded", function() {
+            document.body.style.opacity = "0"; // Start hidden
+            setTimeout(function() {
+                document.body.style.transition = "opacity 0.5s ease"; // Apply transition
+                document.body.style.opacity = "1"; // Fade in
+            }, 100); // Slight delay to ensure the transition works
+        });
+    </script>
+	<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        let progress = localStorage.getItem('courseProgress') ? parseFloat(localStorage.getItem('courseProgress')) : 0;
+        const totalChapters = 3;
+        const totalQuizzes = 3;
+        const progressIncrement = 100 / (totalChapters + totalQuizzes);
+
+        // Elements
+        const progressBar = document.getElementById('progress-bar');
+        const progressPercentage = document.getElementById('progress-percentage');
+        const chapterCards = document.querySelectorAll('.chapter-card');
+        const practiceCards = document.querySelectorAll('.practice-card');
+
+        // Initialize unlocked state
+        let unlockedChapters = localStorage.getItem('unlockedChapters') ? parseInt(localStorage.getItem('unlockedChapters')) : 1;
+        let unlockedQuizzes = localStorage.getItem('unlockedQuizzes') ? parseInt(localStorage.getItem('unlockedQuizzes')) : 1;
+
+        function updateProgress() {
+            progressBar.style.width = `${progress}%`;
+            progressPercentage.textContent = `Progress: ${Math.round(progress)}%`;
+        }
+
+        function saveProgress() {
+            localStorage.setItem('courseProgress', progress);
+            localStorage.setItem('unlockedChapters', unlockedChapters);
+            localStorage.setItem('unlockedQuizzes', unlockedQuizzes);
+        }
+
+        function unlockNextChapter(index) {
+            if (index < chapterCards.length - 1) {
+                chapterCards[index + 1].classList.remove('locked');
+            }
+        }
+
+        function unlockNextQuiz(index) {
+            if (index < practiceCards.length - 1) {
+                practiceCards[index + 1].classList.remove('locked');
+            }
+        }
+
+        // Restore progress and unlock states
+        updateProgress();
+        for (let i = 0; i < unlockedChapters; i++) {
+            chapterCards[i].classList.remove('locked');
+        }
+        for (let i = 0; i < unlockedQuizzes; i++) {
+            practiceCards[i].classList.remove('locked');
+        }
+
+        // Chapter click handler
+        chapterCards.forEach((card, index) => {
+            card.addEventListener('click', () => {
+                if (!card.classList.contains('locked')) {
+                    // Open video
+                    window.open(card.getAttribute('data-url'), '_blank');
+                    // Update progress
+                    if (index + 1 === unlockedChapters) {
+                        progress += progressIncrement;
+                        unlockedChapters++;
+                        updateProgress();
+                        saveProgress();
+                    }
+                    // Unlock next chapter
+                    unlockNextChapter(index);
+                }
+            });
+        });
+
+        // Quiz click handler
+        practiceCards.forEach((card, index) => {
+            card.addEventListener('click', () => {
+                if (!card.classList.contains('locked')) {
+                    // Open quiz
+                    window.open(card.getAttribute('data-url'), '_blank');
+                    // Update progress
+                    if (index + 1 === unlockedQuizzes) {
+                        progress += progressIncrement;
+                        unlockedQuizzes++;
+                        updateProgress();
+                        saveProgress();
+                    }
+                    // Unlock next quiz
+                    unlockNextQuiz(index);
+                }
+            });
+        });
+    });
+</script>
+
 </body>
 </html>
