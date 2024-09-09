@@ -1,10 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Course 2: Basics Of CSS</title>
-    <link rel="stylesheet" href="styles.css">
     <!-- Font Awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
@@ -180,6 +180,11 @@
             background-color: #333;
             color: #fff;
         }
+        .fade-out {
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
     </style>
 </head>
 <body>
@@ -233,7 +238,8 @@
         .right ul li a:hover {
             color: #007BFF; /* Hover effect color */
         }
-    </style>
+
+</style>
     
     <!-- 
     <header>
@@ -380,5 +386,124 @@
             });
         });
     </script>
+    <script> 
+        document.addEventListener("DOMContentLoaded", function() {
+            document.body.style.opacity = "0"; // Start hidden
+            setTimeout(function() {
+                document.body.style.transition = "opacity 0.5s ease"; // Apply transition
+                document.body.style.opacity = "1"; // Fade in
+            }, 100); // Slight delay to ensure the transition works
+        });
+    </script>
+	<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const courseKey = 'course2_progress';  // Unique key for this course progress
+        const timeKey = 'course2_timeSpent';   // Unique key for this course time tracking
+        let progress = localStorage.getItem(courseKey) ? parseFloat(localStorage.getItem(courseKey)) : 0;
+        const totalChapters = 3;
+        const totalQuizzes = 3;
+        const progressIncrement = 100 / (totalChapters + totalQuizzes);
+        
+        // Elements
+        const progressBar = document.getElementById('progress-bar');
+        const progressPercentage = document.getElementById('progress-percentage');
+        const chapterCards = document.querySelectorAll('.chapter-card');
+        const practiceCards = document.querySelectorAll('.practice-card');
+        
+        // Initialize unlocked state
+        let unlockedChapters = Math.floor(progress / progressIncrement);
+        let unlockedQuizzes = unlockedChapters > totalChapters ? unlockedChapters - totalChapters : 0;
+
+        // Function to update and save progress
+        function updateProgress() {
+            progressBar.style.width = `${progress}%`;
+            progressPercentage.textContent = `Progress: ${Math.round(progress)}%`;
+            localStorage.setItem(courseKey, progress);  // Save progress in localStorage
+        }
+
+        function unlockNextChapter(index) {
+            if (index < chapterCards.length - 1) {
+                chapterCards[index + 1].classList.remove('locked');
+            }
+        }
+
+        function unlockNextQuiz(index) {
+            if (index < practiceCards.length - 1) {
+                practiceCards[index + 1].classList.remove('locked');
+            }
+        }
+
+        // Initialize the progress bar
+        updateProgress();
+
+        // Unlock chapters based on saved progress
+        chapterCards.forEach((card, index) => {
+            if (index < unlockedChapters) {
+                card.classList.remove('locked');
+            }
+            card.addEventListener('click', () => {
+                if (!card.classList.contains('locked')) {
+                    // Open video
+                    window.open(card.getAttribute('data-url'), '_blank');
+                    // Update progress
+                    progress += progressIncrement;
+                    updateProgress();
+                    // Unlock next chapter
+                    unlockNextChapter(index);
+                    // Track unlocked chapters
+                    if (index + 1 >= unlockedChapters) {
+                        unlockedChapters = index + 2;
+                    }
+                }
+            });
+        });
+
+        // Unlock quizzes based on saved progress
+        practiceCards.forEach((card, index) => {
+            if (index < unlockedQuizzes) {
+                card.classList.remove('locked');
+            }
+            card.addEventListener('click', () => {
+                if (!card.classList.contains('locked')) {
+                    // Open quiz
+                    window.open(card.getAttribute('data-url'), '_blank');
+                    // Update progress
+                    progress += progressIncrement;
+                    updateProgress();
+                    // Unlock next quiz
+                    unlockNextQuiz(index);
+                    // Track unlocked quizzes
+                    if (index + 1 >= unlockedQuizzes) {
+                        unlockedQuizzes = index + 2;
+                    }
+                }
+            });
+        });
+
+        // Time spent tracking
+        let sessionStart = Date.now(); // Time when the user enters the site
+        let storedTime = localStorage.getItem(timeKey) ? parseInt(localStorage.getItem(timeKey)) : 0;
+
+        // Function to update the total time spent in localStorage
+        function updateTimeSpent() {
+            let sessionEnd = Date.now(); // Time when the user is leaving the site
+            let sessionDuration = Math.floor((sessionEnd - sessionStart) / 1000); // Calculate the duration in seconds
+            let totalTimeSpent = storedTime + sessionDuration; // Add this session's time to the previous total
+
+            // Save the updated time in localStorage
+            localStorage.setItem(timeKey, totalTimeSpent);
+
+            console.log(`Time spent this session: ${sessionDuration} seconds`);
+            console.log(`Total time spent: ${totalTimeSpent} seconds`);
+        }
+
+        // Event listener for when the user leaves the page
+        window.addEventListener('beforeunload', updateTimeSpent);
+
+        // Optional: Display the total time spent when the user returns
+        console.log(`Total time spent from previous sessions: ${storedTime} seconds`);
+    });
+</script>
+
 </body>
 </html>
